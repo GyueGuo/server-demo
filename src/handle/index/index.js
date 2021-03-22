@@ -8,7 +8,7 @@ const index = path.resolve(path.join('src', 'template', 'index.html'));
 
 function readFile (url) {
   return new Promise((success) => {
-    const doc = fs.readFile(url, (err, data) => {
+    const doc = fs.readFile(url, {encoding: 'utf8'}, (err, data) => {
       if (err) {
         success('')
         return
@@ -18,10 +18,13 @@ function readFile (url) {
   })
 }
 router.get('/', async function (ctx, next) {
-  const file = await readFile(index);
-  ctx.status = 200;
-  ctx.set('content-type', 'text/html')
-  ctx.body = file
+  console.log(ctx.req.url);
+  if (!path.extname(ctx.req.url)) {
+    const file = await readFile(index);
+    ctx.status = 200;
+    ctx.set('content-type', 'text/html')
+    ctx.body = file.toString();
+  }
   next();
 });
 
