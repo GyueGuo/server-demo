@@ -1025,12 +1025,12 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 0.6rem 0.64rem 0;
+  padding: 80px 32px 0;
   background-color: #fff;
 }
 .payment-wrap .form-item {
   border-bottom: 1px solid #eee;
-  line-height: 1.2rem;
+  line-height: 60px;
 }
 .payment-wrap .form-item input {
   box-sizing: border-box;
@@ -1039,20 +1039,20 @@ a {
   border: none;
   width: 100%;
   color: #333;
-  height: 1.2rem;
-  font-size: 0.32rem;
+  height: 60px;
+  font-size: 16px;
   caret-color: #f64;
   outline: none;
 }
 .payment-wrap .form-submit {
   display: block;
   width: 100%;
-  margin: 1rem 0 0.36rem;
-  height: 1rem;
+  margin: 50px 0 18px;
+  height: 50px;
   border: none;
-  line-height: 1em;
-  font-size: 0.32rem;
-  border-radius: 0.04rem;
+  line-height: 50px;
+  font-size: 16px;
+  border-radius: 2px;
   text-align: center;
   color: #fff;
   background-color: #fc6621;
@@ -1063,16 +1063,21 @@ a {
 }
 .payment-wrap .form-entries-wrap a {
   color: #999;
-  font-size: 0.28rem;
+  font-size: 14px;
   text-decoration: none;
 }
 .payment-wrap .agreement-link {
   position: fixed;
   left: 50%;
-  bottom: 0.4rem;
+  bottom: 20px;
   transform: translate(-50%, 0);
   color: #333;
   font-size: 0.24rem;
+}
+@media screen and (max-height: 430px) {
+  .payment-wrap .agreement-link {
+    display: none;
+  }
 }
 .payment-wrap .period-item {
   display: flex;
@@ -1086,7 +1091,7 @@ a {
   flex-shrink: 0;
 }
 .payment-wrap .period-item .item-price {
-  margin: 0 0.4rem;
+  margin: 0 0.2rem;
   width: 0;
   flex: 1;
   text-align: right;
@@ -1094,11 +1099,6 @@ a {
 .payment-wrap .period-item .item-icon {
   flex-shrink: 0;
   color: #fc6621;
-}
-@media screen and (max-height: 400px) {
-  .agreement-link {
-    display: none;
-  }
 }
 
 .record-list-wrap {
