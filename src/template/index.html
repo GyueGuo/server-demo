@@ -22,6 +22,12 @@
      console.log(msg, url, lineNo, columnNo, error);
       return false;
     }
+    var xml = new XMLHttpRequest()
+    xml.onreadystatechange = function () {
+      console.log(xml.responseText);
+    }
+    xml.open('get', '/js/main.js', true);
+    xml.send()
   </script>
   <link href="/css/main.css" rel="stylesheet">
 </head>
