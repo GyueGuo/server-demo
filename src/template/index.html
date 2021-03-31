@@ -14,27 +14,24 @@
   <title></title>
   <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.4.0/vconsole.min.js"></script>
   <script>new VConsole();</script>
-  <script>
-    window.addEventListener('error', function (...a) {
-      console.log(a);
-    }, true);
-    window.onerror = function (msg, url, lineNo, columnNo, error) {
-     console.log(msg, url, lineNo, columnNo, error);
-      return false;
-    }
-    var xml = new XMLHttpRequest()
-    xml.onreadystatechange = function () {
-      console.log(xml.responseText);
-    }
-    xml.open('get', '/js/main.js', true);
-    xml.send()
-  </script>
   <link href="/css/main.css" rel="stylesheet">
 </head>
 
 <body>
   <div id="app"></div>
-  <script src="/js/main.js" crossorigin="anonymous"></script>
+  <!-- <script src="/js/main.js" crossorigin="anonymous"></script> -->
+  <script>
+    var xml = new XMLHttpRequest()
+    xml.onreadystatechange = function () {
+      if (xml.status === 200 && xml.readyState === 4) {
+        var s = document.createElement('script');
+        s.innerHTML = xml.responseText
+        document.body.appendChild(s);
+      }
+    }
+    xml.open('get', '/js/main.js', true);
+    xml.send()
+  </script>
 </body>
 
 </html>
