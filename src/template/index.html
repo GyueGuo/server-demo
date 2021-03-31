@@ -17,7 +17,11 @@
   <script>
     window.addEventListener('error', function (...a) {
       console.log(a);
-    }, true)
+    }, true);
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+     console.log(msg, url, lineNo, columnNo, error);
+      return false;
+    }
   </script>
   <link href="/css/main.css" rel="stylesheet">
 </head>
