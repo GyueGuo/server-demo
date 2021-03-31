@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+}
+::-webkit-input-placeholder {
+  color: #ccc;
+}
+html {
+  background-color: #f8f8f8;
+}
+html,
+body,
+#app {
+  height: 100%;
+}
+body {
+  font-size: 0.28rem;
+  line-height: 0.4rem;
+}
+.agreement-wrap {
+  background-color: #fff;
+  min-height: 100%;
+  padding: 0.4rem;
+}
+.agreement-wrap h2 {
+  font-size: 0.44rem;
+  line-height: 1rem;
+  text-align: center;
+}
+.agreement-wrap .desc-wrap {
+  text-indent: 2em;
+  font-size: 0.28rem;
+  line-height: 0.48rem;
+  color: #333;
+}
+.agreement-wrap .desc-wrap p {
+  margin-top: 0.48rem;
+}
+
