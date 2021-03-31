@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const path = require('path');
 const serve = require('koa-static');
-const bodyParser = require('koa-bodyparser');
+var cors = require('koa2-cors');
 const routes = require('./handle/index.js')
 const fs = require('fs');
 
@@ -25,6 +25,7 @@ function readFile (url) {
 const port = 3002
 // console.log(path.resolve("./static"))
 new Koa()
+  .use(cors())
   .use(serve("./static"))
   // .use(bodyParser())
   // .use(routes.routes())
