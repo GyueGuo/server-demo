@@ -1139,12 +1139,18 @@
         }
         return html;
       }
+
+      $(document).on('click', '.record-item', function () {
+        window.location.href = '/record-detail?id=' + $(this).attr('index');
+      });
+      $(window).on('beforeunload', cb);
+  
       var chatRecord = sessionStorage.getItem('chatRecord');
       if (chatRecord) {
         chatRecord = JSON.parse(chatRecord);
       }
       if (Object.prototype.toString.call(chatRecord) === '[object Array]') {
-        renderList(chatRecord);
+        $('#list').html(renderList(chatRecord));
         return;
       }
       var cb = draw();
@@ -1168,10 +1174,6 @@
           }
         },
       });
-      $(document).on('click', '.record-item', function () {
-        window.location.href = '/record-detail?id=' + $(this).attr('index');
-      });
-      $(window).on('beforeunload', cb);
     });
   </script>
 </body>
