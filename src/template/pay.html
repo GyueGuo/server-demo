@@ -1107,7 +1107,6 @@
           timer = setTimeout(remove, 3000)
         };
       })();
-      alert(1)
       var curPrice = null;
       var curWx = '';
       var wxReg = /^[a-z][_a-z0-9]{5,}$/i;
@@ -1115,7 +1114,7 @@
         $('.form-submit').prop('disabled', !curPrice || !curWx);
       }
       $.ajax({
-        url: 'http://www.tongchengby.vip/wx/getPriceDic',
+        url: 'http://www.tongchengby.vip/wx/getPriceDic/',
         method: 'post',
         headers: {
           'content-type': 'application/json;charset=UTF-8',
@@ -1150,40 +1149,38 @@
         checkBtnStatus();
       });
 
-      // $('.form-submit').on('click', function () {
-      //   if (curPrice && curWx) {
-      //     if (!(wxReg).test(curWx)) {
-      //       Toast('请输入正确格式的微信号');
-      //       return;
-      //     }
+      $('.form-submit').on('click', function () {
+        if (!(wxReg).test(curWx)) {
+          Toast('请输入正确格式的微信号');
+          return;
+        }
 
-      //     $.ajax({
-      //       // url: 'http://www.tongchengby.vip/wx/alipay/alipay',
-      //       url: 'http://www.tongchengby.vip/wx/toquery2',
-      //       method: 'post',
-      //       data: JSON.stringify({
-      //         id: curPrice,
-      //       }),
-      //       headers: {
-      //         'content-type': 'application/json;charset=UTF-8',
-      //       },
-      //       success: function (res) {
-      //         try {
-      //           const data = res.result.forms;
-      //           var div = document.createElement('div');
-      //           div.id = 'formWrap';
-      //           div.style.display = 'none';
-      //           var html = data.match(/<form[\s\S]+<\/form>/)[0];
-      //           div.innerHTML = html;
-      //           document.body.appendChild(div);
-      //           document.forms[0].submit();
-      //         } catch (e) {
-      //           Toast('提单失败，请重试');
-      //         }
-      //       }
-      //     });
-      //   }
-      // });
+        $.ajax({
+          // url: 'http://www.tongchengby.vip/wx/alipay/alipay',
+          url: 'http://www.tongchengby.vip/wx/toquery2',
+          method: 'post',
+          data: JSON.stringify({
+            id: curPrice,
+          }),
+          headers: {
+            'content-type': 'application/json;charset=UTF-8',
+          },
+          success: function (res) {
+            try {
+              const data = res.result.forms;
+              var div = document.createElement('div');
+              div.id = 'formWrap';
+              div.style.display = 'none';
+              var html = data.match(/<form[\s\S]+<\/form>/)[0];
+              div.innerHTML = html;
+              document.body.appendChild(div);
+              document.forms[0].submit();
+            } catch (e) {
+              Toast('提单失败，请重试');
+            }
+          }
+        });
+      });
     
       if (navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
         window.addEventListener('pageshow', function (e) {
