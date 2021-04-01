@@ -1166,7 +1166,7 @@
           })
             .then((res) => {
               try {
-                var data = res.data;
+                const data = res.result.forms;
                 var div = document.createElement('div');
                 div.id = 'formWrap';
                 div.style.display = 'none';
