@@ -1109,15 +1109,17 @@
           if (res.code === 0) {
             var form = '';
             for (var i = 0; i < res.result.length; i++) {
+              if (i === 0) {
+                curPrice = res.result[i].id;
+              }
               form += '<div class="form-item period-item" uid="' + res.result[i].id + '"><span class="item-title">数据查询</span><span class="item-price">查询记录，' + res.result[i].queryName + '</span><i class="item-icon am-icon am-icon-check am-icon-sm"></i></div>';
-
             }
             $('#form').replaceWith(form);
             $('.payment-wrap').show()
           }
         }
       });
-      $(document).on('.form-item', 'click', function () {
+      $(document).on('click', '.form-item', function () {
         var $this = $(this);
         curPrice = $this.attr('uid');
         $this.find('.item-icon').show();
