@@ -1673,7 +1673,7 @@
         var html = '';
         if (id && (id - 0) < chatRecord.length) {
           for (var i = 0; i < chatRecord.length; i++) {
-            html += renderMsg(chatRecord[i])
+            html += renderMsg(chatRecord[i].data)
           }
         }
         $('.msg-list').html(html)
