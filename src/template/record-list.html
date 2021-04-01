@@ -1150,29 +1150,28 @@
       console.log(chatRecord)
       if (Object.prototype.toString.call(chatRecord) === '[object Array]') {
         $('#list').html(renderList(chatRecord));
-        return;
-      }
-      var cb = draw();
-
-      $.ajax({
-        url: 'http://www.tongchengby.vip/wx/getChatRecord',
-        method: 'post',
-        headers: {
-          'content-type': 'application/json;charset=UTF-8',
-        },
-        success: function (data) {
-          if (data.code === 0) {
-            list = data.result;
-            if (list && list.length) {
-              $('#list').html(renderList(list));
-              sessionStorage.setItem('chatRecord', JSON.stringify(list));
-            } else {
-              $('#list').html('未找到历史消息');
+      } else {
+        draw();
+        $.ajax({
+          url: 'http://www.tongchengby.vip/wx/getChatRecord',
+          method: 'post',
+          headers: {
+            'content-type': 'application/json;charset=UTF-8',
+          },
+          success: function (data) {
+            if (data.code === 0) {
+              list = data.result;
+              if (list && list.length) {
+                $('#list').html(renderList(list));
+                sessionStorage.setItem('chatRecord', JSON.stringify(list));
+              } else {
+                $('#list').html('未找到历史消息');
+              }
+              return;
             }
-            return;
-          }
-        },
-      });
+          },
+        });
+      }
     });
   </script>
 </body>

@@ -1094,7 +1094,7 @@
   </div>
   <script>
     $(function () {
-      var Toast = (function  () {
+      var Toast = (function () {
         var timer = null;
         function remove() {
           $('#toast').remove();
@@ -1107,97 +1107,91 @@
           timer = setTimeout(remove, 3000)
         };
       })();
-      var curPrice = null;
-      var curWx = '';
-      var wxReg = /^[a-z][_a-z0-9]{5,}$/i;
-      function checkBtnStatus () {
-        $('.form-submit').prop('disabled', !curPrice || !curWx);
-      }
-      $.ajax({
-        url: 'http://www.tongchengby.vip/wx/getPriceDic',
-        method: 'post',
-        headers: {
-          'content-type': 'application/json;charset=UTF-8',
-        },
-        data: JSON.stringify({}),
-        success: function (res) {
-          console.log(res);
-          if (res.code === 0) {
-            var form = '';
-            for (var i = 0; i < res.result.length; i++) {
-              form += '<div class="form-item period-item" uid="' + res.result[i].id + '"><span class="item-title">数据查询</span><span class="item-price">查询记录，' + res.result[i].queryName + '</span><svg class="item-icon am-icon am-icon-check am-icon-sm" id="check" viewBox="0 0 44 44"><path fill-rule="evenodd" d="M34.538 8L38 11.518 17.808 32 8 22.033l3.462-3.518 6.346 6.45z"></path></svg></div>';
-            }
-            $('#form').replaceWith(form);
-            $('.period-item').eq(0).click();
-            $('.payment-wrap').show()
-          }
-        }
-      });
+      alert(1)
+      // var curPrice = null;
+      // var curWx = '';
+      // var wxReg = /^[a-z][_a-z0-9]{5,}$/i;
+      // function checkBtnStatus () {
+      //   $('.form-submit').prop('disabled', !curPrice || !curWx);
+      // }
+      // $.ajax({
+      //   url: 'http://www.tongchengby.vip/wx/getPriceDic',
+      //   method: 'post',
+      //   headers: {
+      //     'content-type': 'application/json;charset=UTF-8',
+      //   },
+      //   data: JSON.stringify({}),
+      //   success: function (res) {
+      //     if (res.code === 0) {
+      //       var form = '';
+      //       for (var i = 0; i < res.result.length; i++) {
+      //         form += '<div class="form-item period-item" uid="' + res.result[i].id + '"><span class="item-title">数据查询</span><span class="item-price">查询记录，' + res.result[i].queryName + '</span><svg class="item-icon am-icon am-icon-check am-icon-sm" id="check" viewBox="0 0 44 44"><path fill-rule="evenodd" d="M34.538 8L38 11.518 17.808 32 8 22.033l3.462-3.518 6.346 6.45z"></path></svg></div>';
+      //       }
+      //       $('#form').replaceWith(form);
+      //       $('.period-item').eq(0).click();
+      //       $('.payment-wrap').show();
+      //     }
+      //   }
+      // });
       
-      $(document).on('click', '.period-item', function () {
-        var $this = $(this);
-        curPrice = $this.attr('uid');
-        $this.find('.item-icon').css('visibility','visible');
-        $this.siblings().find('.item-icon').css('visibility','hidden');
-        checkBtnStatus();
-      });
+      // $(document).on('click', '.period-item', function () {
+      //   var $this = $(this);
+      //   curPrice = $this.attr('uid');
+      //   $this.find('.item-icon').css('visibility','visible');
+      //   $this.siblings().find('.item-icon').css('visibility','hidden');
+      //   checkBtnStatus();
+      // });
 
-      $('input').on('input propertychange', function () {
-        var $this = $(this);
-        var val = $this.val().trim();
-        $this.val(val);
-        curWx = val;
-        checkBtnStatus();
-      });
+      // $('input').on('input propertychange', function () {
+      //   var $this = $(this);
+      //   var val = $this.val().trim();
+      //   $this.val(val);
+      //   curWx = val;
+      //   checkBtnStatus();
+      // });
 
-      $('.form-submit').on('click', function () {
-        if (curPrice && curWx) {
-          if (!(wxReg).test(curWx)) {
-            Toast('请输入正确格式的微信号');
-            return;
-          }
+      // $('.form-submit').on('click', function () {
+      //   if (curPrice && curWx) {
+      //     if (!(wxReg).test(curWx)) {
+      //       Toast('请输入正确格式的微信号');
+      //       return;
+      //     }
 
-          $.ajax({
-            // url: 'http://www.tongchengby.vip/wx/alipay/alipay',
-            url: 'http://www.tongchengby.vip/wx/toquery2',
-            method: 'post',
-            data: JSON.stringify({
-              id: curPrice,
-            }),
-            headers: {
-              'content-type': 'application/json;charset=UTF-8',
-            },
-            success: function (res) {
-              try {
-                const data = res.result.forms;
-                var div = document.createElement('div');
-                div.id = 'formWrap';
-                div.style.display = 'none';
-                var html = data.match(/<form[\s\S]+<\/form>/)[0];
-                div.innerHTML = html;
-                document.body.appendChild(div);
-                document.forms[0].submit();
-              } catch (e) {
-                Toast('提单失败，请重试');
-              }
-            }
-          });
-        }
-      });
+      //     $.ajax({
+      //       // url: 'http://www.tongchengby.vip/wx/alipay/alipay',
+      //       url: 'http://www.tongchengby.vip/wx/toquery2',
+      //       method: 'post',
+      //       data: JSON.stringify({
+      //         id: curPrice,
+      //       }),
+      //       headers: {
+      //         'content-type': 'application/json;charset=UTF-8',
+      //       },
+      //       success: function (res) {
+      //         try {
+      //           const data = res.result.forms;
+      //           var div = document.createElement('div');
+      //           div.id = 'formWrap';
+      //           div.style.display = 'none';
+      //           var html = data.match(/<form[\s\S]+<\/form>/)[0];
+      //           div.innerHTML = html;
+      //           document.body.appendChild(div);
+      //           document.forms[0].submit();
+      //         } catch (e) {
+      //           Toast('提单失败，请重试');
+      //         }
+      //       }
+      //     });
+      //   }
+      // });
     
-      if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
-        var reload = function (e) {
-          if (
-            e.persisted
-            || (
-              window.performance && window.performance.navigation.type === 2
-            )
-          ) {
-            location.reload()
-          }
-        };
-        window.addEventListener('pageshow', reload, false);
-      }
+      // if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+      //   window.addEventListener('pageshow', function (e) {
+      //     if (e.persisted || (window.performance && window.performance.navigation.type === 2)) {
+      //       location.reload()
+      //     }
+      //   }, false);
+      // }
     });
   </script>
 </body>
