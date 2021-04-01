@@ -1108,31 +1108,31 @@
         };
       })();
       alert(1)
-      // var curPrice = null;
-      // var curWx = '';
-      // var wxReg = /^[a-z][_a-z0-9]{5,}$/i;
-      // function checkBtnStatus () {
-      //   $('.form-submit').prop('disabled', !curPrice || !curWx);
-      // }
-      // $.ajax({
-      //   url: 'http://www.tongchengby.vip/wx/getPriceDic',
-      //   method: 'post',
-      //   headers: {
-      //     'content-type': 'application/json;charset=UTF-8',
-      //   },
-      //   data: JSON.stringify({}),
-      //   success: function (res) {
-      //     if (res.code === 0) {
-      //       var form = '';
-      //       for (var i = 0; i < res.result.length; i++) {
-      //         form += '<div class="form-item period-item" uid="' + res.result[i].id + '"><span class="item-title">数据查询</span><span class="item-price">查询记录，' + res.result[i].queryName + '</span><svg class="item-icon am-icon am-icon-check am-icon-sm" id="check" viewBox="0 0 44 44"><path fill-rule="evenodd" d="M34.538 8L38 11.518 17.808 32 8 22.033l3.462-3.518 6.346 6.45z"></path></svg></div>';
-      //       }
-      //       $('#form').replaceWith(form);
-      //       $('.period-item').eq(0).click();
-      //       $('.payment-wrap').show();
-      //     }
-      //   }
-      // });
+      var curPrice = null;
+      var curWx = '';
+      var wxReg = /^[a-z][_a-z0-9]{5,}$/i;
+      function checkBtnStatus () {
+        $('.form-submit').prop('disabled', !curPrice || !curWx);
+      }
+      $.ajax({
+        url: 'http://www.tongchengby.vip/wx/getPriceDic',
+        method: 'post',
+        headers: {
+          'content-type': 'application/json;charset=UTF-8',
+        },
+        data: JSON.stringify({}),
+        success: function (res) {
+          if (res.code === 0) {
+            var form = '';
+            for (var i = 0; i < res.result.length; i++) {
+              form += '<div class="form-item period-item" uid="' + res.result[i].id + '"><span class="item-title">数据查询</span><span class="item-price">查询记录，' + res.result[i].queryName + '</span><svg class="item-icon am-icon am-icon-check am-icon-sm" id="check" viewBox="0 0 44 44"><path fill-rule="evenodd" d="M34.538 8L38 11.518 17.808 32 8 22.033l3.462-3.518 6.346 6.45z"></path></svg></div>';
+            }
+            $('#form').replaceWith(form);
+            $('.period-item').eq(0).click();
+            $('.payment-wrap').show();
+          }
+        }
+      });
       
       // $(document).on('click', '.period-item', function () {
       //   var $this = $(this);
