@@ -1125,7 +1125,7 @@
               form += '<div class="form-item period-item" uid="' + res.result[i].id + '"><span class="item-title">数据查询</span><span class="item-price">查询记录，' + res.result[i].queryName + '</span><svg class="item-icon am-icon am-icon-check am-icon-sm" id="check" viewBox="0 0 44 44"><path fill-rule="evenodd" d="M34.538 8L38 11.518 17.808 32 8 22.033l3.462-3.518 6.346 6.45z"></path></svg></div>';
             }
             $('#form').replaceWith(form);
-            $('.form-item').eq(0).click();
+            $('.period-item').eq(0).click();
             $('.payment-wrap').show()
           }
         }
