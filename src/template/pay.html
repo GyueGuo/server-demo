@@ -1155,31 +1155,29 @@
           return;
         }
 
-        $.ajax({
-          // url: 'http://www.tongchengby.vip/wx/alipay/alipay',
-          url: 'http://www.tongchengby.vip/wx/toquery2',
-          method: 'post',
-          data: JSON.stringify({
-            id: curPrice,
-          }),
-          headers: {
-            'content-type': 'application/json;charset=UTF-8',
-          },
-          success: function (res) {
-            try {
-              const data = res.result.forms;
-              var div = document.createElement('div');
-              div.id = 'formWrap';
-              div.style.display = 'none';
-              var html = data.match(/<form[\s\S]+<\/form>/)[0];
-              div.innerHTML = html;
-              document.body.appendChild(div);
-              document.forms[0].submit();
-            } catch (e) {
-              Toast('提单失败，请重试');
-            }
-          }
-        });
+        // $.ajax({
+        //   // url: 'http://www.tongchengby.vip/wx/alipay/alipay',
+        //   url: 'http://www.tongchengby.vip/wx/toquery2',
+        //   method: 'post',
+        //   data: JSON.stringify({ id: curPrice }),
+        //   headers: {
+        //     'content-type': 'application/json;charset=UTF-8',
+        //   },
+        //   success: function (res) {
+        //     try {
+        //       const data = res.result.forms;
+        //       var div = document.createElement('div');
+        //       div.id = 'formWrap';
+        //       div.style.display = 'none';
+        //       var html = data.match(/<form[\s\S]+<\/form>/)[0];
+        //       div.innerHTML = html;
+        //       document.body.appendChild(div);
+        //       document.forms[0].submit();
+        //     } catch (e) {
+        //       Toast('提单失败，请重试');
+        //     }
+        //   }
+        // });
       });
     
       if (navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
