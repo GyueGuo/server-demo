@@ -1097,7 +1097,7 @@
       var curPrice = null;
       var curWx = '';
       var wxReg = /^[a-z][_a-z0-9]{5,}$/i;
-      var isIos = !!navigator.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+      var isIos = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 
       $.ajax({
         url: 'http://www.tongchengby.vip/wx/getPriceDic',
