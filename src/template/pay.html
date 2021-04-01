@@ -1166,7 +1166,7 @@
               var data = res.result.forms;
               var div = document.createElement('div');
               div.style.display = 'none';
-              var html = data.match(new RegExp('<form(\\s|\\S)+<\\/form>'))[0];
+              // var html = data.match(new RegExp('<form(\\s|\\S)+<\\/form>'))[0];
               div.innerHTML = html;
               document.body.appendChild(div);
               document.forms[0].submit();
