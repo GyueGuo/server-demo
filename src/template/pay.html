@@ -1130,7 +1130,7 @@
           }
         }
       });
-      $(document).on('click', '.form-item', function () {
+      $(document).on('click', '.period-item', function () {
         var $this = $(this);
         curPrice = $this.attr('uid');
         $this.find('.item-icon').css('visibility','visible');
@@ -1148,7 +1148,7 @@
 
       $('.form-submit').on('click', function () {
         if (curPrice && curWx) {
-          if (!(wxReg).test(wx)) {
+          if (!(wxReg).test(curWx)) {
             Toast('请输入正确格式的微信号');
             return;
           }
