@@ -28,7 +28,7 @@ router.post('/deploy', async function (ctx, next) {
   ctx.status = 200
   next();
 });
-router.post('/api/dic', async function (ctx, next) {
+router.get('/api/dic', async function (ctx, next) {
   function rq() {
     return  new Promise((resolve) => {
       const r = http.request({
