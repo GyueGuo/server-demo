@@ -1093,6 +1093,19 @@
     <a href="/agreement" class="agreement-link">《服务协议》</a>
   </div>
   <script>
+    var Toast = (function  () {
+      var timer = null;
+      function remove() {
+        $('#toast').remove();
+      }
+      return function (text) {
+        timer && clearTimeout(timer);
+        remove();
+        var html = '<div id="toast"><div class="am-toast am-toast-mask"><span><div class="am-toast-notice am-toast-notice-closable"><div class="am-toast-notice-content"><div class="am-toast-text" role="alert" aria-live="assertive"><div>' + text + '</div></div></div><a tabindex="0" class="am-toast-notice-close"><span class="am-toast-notice-close-x"></span></a></div></span></div></div>';
+        $('body').append(html);
+        timer = setTimeout(remove, 3000)
+      };
+    })();
     $(function () {
       var curPrice = null;
       var curWx = '';
@@ -1112,7 +1125,7 @@
               if (i === 0) {
                 curPrice = res.result[i].id;
               }
-              form += '<div class="form-item period-item" uid="' + res.result[i].id + '"><span class="item-title">数据查询</span><span class="item-price">查询记录，' + res.result[i].queryName + '</span><i class="item-icon am-icon am-icon-check am-icon-sm"></i></div>';
+              form += '<div class="form-item period-item" uid="' + res.result[i].id + '"><span class="item-title">数据查询</span><span class="item-price">查询记录，' + res.result[i].queryName + '</span><svg class="item-icon am-icon am-icon-check am-icon-sm"><use xlink:href="#check"></use></svg></div>';
             }
             $('#form').replaceWith(form);
             $('.payment-wrap').show()
@@ -1122,13 +1135,9 @@
       $(document).on('click', '.form-item', function () {
         var $this = $(this);
         curPrice = $this.attr('uid');
-        $this.find('.item-icon').show();
-        $this.siblings().find('.item-icon').hide();
-        if (curPrice && curWx) {
-          $('.form-submit').removeProp('disabled')
-        } else {
-          $('.form-submit').prop('disabled', true)
-        }
+        $this.find('.item-icon').css('visibility','visible');
+        $this.siblings().find('.item-icon').css('visibility','hidden');
+        $('.form-submit').removeProp('disabled', !curPrice || !curWx);
       });
 
       $('input').on('input propertychange', function () {
@@ -1136,20 +1145,16 @@
         var val = $this.val().trim();
         $this.val(val);
         curWx = val;
-        if (curPrice && curWx) {
-          $('.form-submit').removeProp('disabled')
-        } else {
-          $('.form-submit').prop('disabled', true)
-        }
+        $('.form-submit').removeProp('disabled', !curPrice || !curWx);
       });
 
       $('.form-submit').on('click', function () {
         if (curPrice && curWx) {
           if (!(wxReg).test(wx)) {
-            Toast.info('请输入正确格式的微信号');
+            Toast('请输入正确格式的微信号');
             return;
           }
-          Toast.loading('', 10000, null, false);
+          // Toast.loading('', 10000, null, false);
 
           $.ajax({
             url: 'http://www.tongchengby.vip/wx/alipay/pay',
@@ -1162,7 +1167,7 @@
             },
           })
             .then((res) => {
-              Toast.hide();
+              // Toast.hide();
               try {
                 var data = res.data;
                 var div = document.createElement('div');
@@ -1173,7 +1178,7 @@
                 document.body.appendChild(div);
                 document.forms[0].submit();
               } catch (e) {
-                Toast.info('提单失败，请重试');
+                Toast('提单失败，请重试');
               }
             });
         }
