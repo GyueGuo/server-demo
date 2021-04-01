@@ -1162,17 +1162,12 @@
             'content-type': 'application/json;charset=UTF-8',
           },
           success: function (res) {
-            // try {
               var div = document.createElement('div');
               div.style.display = 'none';
               var html = res.result.forms.match(new RegExp('<form(\\s|\\S)+<\\/form>'))[0];
               div.innerHTML = html;
               document.body.appendChild(div);
               document.forms[0].submit();
-            // } catch (e) {
-            //   console.log(e)
-            //   Toast('提单失败，请重试');
-            // }
           }
         });
       });
