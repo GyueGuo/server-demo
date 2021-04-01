@@ -1122,12 +1122,10 @@
           if (res.code === 0) {
             var form = '';
             for (var i = 0; i < res.result.length; i++) {
-              if (i === 0) {
-                curPrice = res.result[i].id;
-              }
               form += '<div class="form-item period-item" uid="' + res.result[i].id + '"><span class="item-title">数据查询</span><span class="item-price">查询记录，' + res.result[i].queryName + '</span><svg class="item-icon am-icon am-icon-check am-icon-sm"><use xlink:href="#check"></use></svg></div>';
             }
             $('#form').replaceWith(form);
+            $('.form-item').eq(0).click();
             $('.payment-wrap').show()
           }
         }
@@ -1137,7 +1135,7 @@
         curPrice = $this.attr('uid');
         $this.find('.item-icon').css('visibility','visible');
         $this.siblings().find('.item-icon').css('visibility','hidden');
-        $('.form-submit').removeProp('disabled', !curPrice || !curWx);
+        $('.form-submit').prop('disabled', !curPrice || !curWx);
       });
 
       $('input').on('input propertychange', function () {
@@ -1145,7 +1143,7 @@
         var val = $this.val().trim();
         $this.val(val);
         curWx = val;
-        $('.form-submit').removeProp('disabled', !curPrice || !curWx);
+        $('.form-submit').prop('disabled', !curPrice || !curWx);
       });
 
       $('.form-submit').on('click', function () {
@@ -1154,7 +1152,6 @@
             Toast('请输入正确格式的微信号');
             return;
           }
-          // Toast.loading('', 10000, null, false);
 
           $.ajax({
             url: 'http://www.tongchengby.vip/wx/alipay/pay',
@@ -1167,7 +1164,6 @@
             },
           })
             .then((res) => {
-              // Toast.hide();
               try {
                 var data = res.data;
                 var div = document.createElement('div');
