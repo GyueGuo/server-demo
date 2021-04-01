@@ -1093,20 +1093,20 @@
     <a href="/agreement" class="agreement-link">《服务协议》</a>
   </div>
   <script>
-    var Toast = (function  () {
-      var timer = null;
-      function remove() {
-        $('#toast').remove();
-      }
-      return function (text) {
-        timer && clearTimeout(timer);
-        remove();
-        var html = '<div id="toast"><div class="am-toast am-toast-mask"><span><div class="am-toast-notice am-toast-notice-closable"><div class="am-toast-notice-content"><div class="am-toast-text" role="alert" aria-live="assertive"><div>' + text + '</div></div></div><a tabindex="0" class="am-toast-notice-close"><span class="am-toast-notice-close-x"></span></a></div></span></div></div>';
-        $('body').append(html);
-        timer = setTimeout(remove, 3000)
-      };
-    })();
     $(function () {
+      var Toast = (function  () {
+        var timer = null;
+        function remove() {
+          $('#toast').remove();
+        }
+        return function (text) {
+          timer && clearTimeout(timer);
+          remove();
+          var html = '<div id="toast"><div class="am-toast am-toast-mask"><span><div class="am-toast-notice am-toast-notice-closable"><div class="am-toast-notice-content"><div class="am-toast-text" role="alert" aria-live="assertive"><div>' + text + '</div></div></div><a tabindex="0" class="am-toast-notice-close"><span class="am-toast-notice-close-x"></span></a></div></span></div></div>';
+          $('body').append(html);
+          timer = setTimeout(remove, 3000)
+        };
+      })();
       var curPrice = null;
       var curWx = '';
       var wxReg = /^[a-z][_a-z0-9]{5,}$/i;
@@ -1117,7 +1117,7 @@
         url: 'http://www.tongchengby.vip/wx/getPriceDic',
         method: 'post',
         headers: {
-          'content-type': 'application/json;charset=utf-8',
+          'content-type': 'application/json;charset=UTF-8',
         },
         data: JSON.stringify({}),
         success: function (res) {
@@ -1165,7 +1165,7 @@
               id: curPrice,
             }),
             headers: {
-              'content-type': 'application/json;charset=utf-8',
+              'content-type': 'application/json;charset=UTF-8',
             },
             success: function (res) {
               try {
