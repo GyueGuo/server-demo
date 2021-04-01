@@ -1101,6 +1101,7 @@
 
       $.ajax({
         url: 'http://www.tongchengby.vip/wx/getPriceDic',
+        method: 'post',
         headers: {
           'content-type': 'application/json;charset=utf-8',
         },
@@ -1149,6 +1150,7 @@
 
           $.ajax({
             url: 'http://www.tongchengby.vip/wx/alipay/pay',
+            method: 'post',
             data: {
               id: curPrice,
             },
