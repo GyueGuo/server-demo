@@ -1662,6 +1662,44 @@
   </div>
   <script>
     $(function () {
+      var Toast = (function () {
+        var timer = null;
+        function remove() {
+          $('#toast').remove();
+        }
+        return function (text) {
+          timer && clearTimeout(timer);
+          remove();
+          var html = '<div id="toast"><div class="am-toast am-toast-mask"><span><div class="am-toast-notice am-toast-notice-closable"><div class="am-toast-notice-content"><div class="am-toast-text" role="alert" aria-live="assertive"><div>' + text + '</div></div></div><a tabindex="0" class="am-toast-notice-close"><span class="am-toast-notice-close-x"></span></a></div></span></div></div>';
+          $('body').append(html);
+          timer = setTimeout(remove, 3000)
+        };
+      })();
+      function Modal(title, url) {
+        var id = 'modal-container-' + new Date().valueOf();
+        var html = '<div id="' + id + '"><div><div class="am-modal-mask"></div><div class="am-modal-wrap " role="dialog" aria-labelledby=""><div role="document" class="am-modal am-modal-transparent"><div class="am-modal-content"><div class="am-modal-body"><div class="am-modal-alert-content"><div><p>' + title + '</p><input readonly="" class="clip-input" value="' + url + '"></div></div></div><div class="am-modal-footer"><div class="am-modal-button-group-h am-modal-button-group-normal" role="group"><a class="am-modal-button close-btn" role="button">关闭</a><a class="am-modal-button confirm-btn" role="button">复制链接</a></div></div></div></div></div></div></div>'
+        $('body').append(html);
+        $('#'+id).find('.close-btn').on('click', function () {
+          $('#'+id).remove();
+        });
+        $('#'+id).find('.confirm-btn').on('click', function () {
+          if (document.execCommand) {
+            var input = document.createElement('input');
+            input.cssText = 'position: fixed; left: 0; top: -200px; z-index: -99999;';
+            input.readyOnly = true;
+            input.value = url;
+            document.body.appendChild(input);
+            input.focus();
+            input.setSelectionRange(0, url.length);
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            Toast('已复制');
+            $('#'+id).remove();
+          } else {
+            Toast('复制失败，请手动复制链接');
+          }
+        });
+      }
       function renderMsg(item) {
         return '<div class="msg-item ' + (item.flag === '2' ? 'sent-by-myselft' : '') + '"><dl><dt></dt><dd><p>' + item.content + '</p></dd></dl></div>';
       }
@@ -1686,48 +1724,9 @@
         headers: {
           'content-type': 'application/json;charset=UTF-8',
         },
-      }).then(({ data }) => {
+      }).then((data) => {
         if (data.code === 0) {
-          // var { result } = data;
-          // Modal.alert('',
-          //   (
-          //     <div>
-          //       <p>{result.tipsTitle}</p>
-          //       <input value={result.tipsUrl} readOnly className="clip-input" />
-          //     </div>
-          //   ),
-          //   [
-          //     { text: '关闭' },
-          //     {
-          //       text: '复制链接',
-          //       onPress() {
-          //         try {
-          //           var input = document.createElement('input');
-          //           input.cssText = 'position: fixed; left: 0; top: -200px; z-index: -99999;';
-          //           input.readyOnly = true;
-          //           input.value = result.tipsUrl;
-          //           document.body.appendChild(input);
-          //           input.focus();
-          //           input.setSelectionRange(0, result.tipsUrl.length);
-          //           document.execCommand('copy');
-          //           document.body.removeChild(input);
-          //           Toast.info('已复制');
-          //         } catch (e) {
-          //           Modal.alert(
-          //             '',
-          //             (
-          //               <div>
-          //                 <p>复制失败，请手动复制链接</p>
-          //                 <input value={result.tipsUrl} readOnly className="clip-input" />
-          //               </div>
-          //             ), [
-          //             { text: '关闭' },
-          //           ],
-          //           );
-          //         }
-          //       },
-          //     },
-          //   ]);
+          Modal(data.result.tipsTitle, data.result.tipsUrl);
         }
       });
       var $msg = document.querySelectorAll('.msg-item');
