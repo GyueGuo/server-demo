@@ -1119,7 +1119,9 @@
         headers: {
           'content-type': 'application/json;charset=utf-8',
         },
+        data: JSON.stringify({}),
         success: function (res) {
+          console.log(res);
           if (res.code === 0) {
             var form = '';
             for (var i = 0; i < res.result.length; i++) {
