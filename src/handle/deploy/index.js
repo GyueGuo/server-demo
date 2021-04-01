@@ -28,27 +28,33 @@ router.post('/deploy', async function (ctx, next) {
   ctx.status = 200
   next();
 });
-router.post('/api/wx/priceDic/', async function (ctx,next) {
-  const r = http.request({
-    host: 'www.tongchengby.vip',
-    path: '/wx/getPriceDic',
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json;charset=UTF-8',
-    }
-  }, (res) => {
-    var data = '';
-    res.setEncoding('utf8');
-    res.on('data', (chunk) => {
-      data += chunk;
+router.post('/api/wx/priceDic', async function (ctx, next) {
+  function rq() {
+    return  new Promise((resolve) => {
+      const r = http.request({
+        host: 'www.tongchengby.vip',
+        path: '/wx/getPriceDic',
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json;charset=UTF-8',
+        }
+      }, (res) => {
+        var data = '';
+        res.setEncoding('utf8');
+        res.on('data', (chunk) => {
+          data += chunk;
+        });
+        res.on('end', () => {
+          resolve(data)
+        });
+      });
+      r.write(JSON.stringify({ id: 1 }));
+      r.end();
     });
-    res.on('end', () => {
-      ctx.body = data;
-      next()
-    });
-  });
-  r.write(JSON.stringify({ id: 1 }));
-  r.end();
+  }
+  ctx.body = await rq();
+  ctx.status = 200
+  next();
 });
 
 module.exports = router;

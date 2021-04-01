@@ -1078,7 +1078,6 @@
   </div>
   <script>
     $(function () {
-      console.log('do')
       function draw() {
         var $point = document.querySelector('[data-selector="point"]');
         var $modal = document.querySelector('[data-selector="modal"]');
@@ -1133,15 +1132,14 @@
       function renderList(data) {
         var html = '';
         for (var i = 0; i < data.length; i++) {
-          html += '<div class="record-item" index="' + i + '"><div class="record-item-img"></div><dl><dt><span class="record-item-name">' + data[i].name + '</span></dt><dd>' + data[i].title + '</dd></dl></div>';
+          html += ('<div class="record-item" index="' + i + '"><div class="record-item-img"></div><dl><dt><span class="record-item-name">' + data[i].name + '</span></dt><dd>' + data[i].title + '</dd></dl></div>');
         }
         return html;
       }
 
       $(document).on('click', '.record-item', function () {
-        window.location.href = '/record-detail?id=' + $(this).attr('index');
+        window.location.href = ('/record-detail?id=' + $(this).attr('index'));
       });
-      $(window).on('beforeunload', cb);
 
       var chatRecord = sessionStorage.getItem('chatRecord');
       if (chatRecord) {
@@ -1151,7 +1149,8 @@
       if (Object.prototype.toString.call(chatRecord) === '[object Array]') {
         $('#list').html(renderList(chatRecord));
       } else {
-        draw();
+        var cb = draw();
+        $(window).on('beforeunload', cb);
         $.ajax({
           url: 'http://www.tongchengby.vip/wx/getChatRecord',
           method: 'post',
@@ -1167,7 +1166,6 @@
               } else {
                 $('#list').html('未找到历史消息');
               }
-              return;
             }
           },
         });
