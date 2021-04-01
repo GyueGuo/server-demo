@@ -1135,7 +1135,7 @@
       function renderList(data) {
         var html = '';
         for (var i = 0; i < data.length; i++) {
-          html += '<div class="record-item" index="' + i + '"><div class="record-item-img" /><dl><dt><span class="record-item-name">' + data[i].name + '</span> </dt><dd>' + data[i].title + '</dd></dl></div>';
+          html += '<div class="record-item" index="' + i + '"><div class="record-item-img"></div><dl><dt><span class="record-item-name">' + data[i].name + '</span></dt><dd>' + data[i].title + '</dd></dl></div>';
         }
         return html;
       }
