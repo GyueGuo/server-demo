@@ -45,7 +45,7 @@ router.get('/api/dic', async function (ctx, next) {
           data += chunk;
         });
         res.on('end', () => {
-          resolve(data)
+          resolve(data.replace(/queryPrice/g, 'qname'))
         });
       });
       r.write(JSON.stringify({ id: 1 }));
