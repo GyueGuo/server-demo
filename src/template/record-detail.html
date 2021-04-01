@@ -1687,46 +1687,46 @@
         },
       }).then(({ data }) => {
         if (data.code === 0) {
-          var { result } = data;
-          Modal.alert('',
-            (
-              <div>
-                <p>{result.tipsTitle}</p>
-                <input value={result.tipsUrl} readOnly className="clip-input" />
-              </div>
-            ),
-            [
-              { text: '关闭' },
-              {
-                text: '复制链接',
-                onPress() {
-                  try {
-                    var input = document.createElement('input');
-                    input.cssText = 'position: fixed; left: 0; top: -200px; z-index: -99999;';
-                    input.readyOnly = true;
-                    input.value = result.tipsUrl;
-                    document.body.appendChild(input);
-                    input.focus();
-                    input.setSelectionRange(0, result.tipsUrl.length);
-                    document.execCommand('copy');
-                    document.body.removeChild(input);
-                    Toast.info('已复制');
-                  } catch (e) {
-                    Modal.alert(
-                      '',
-                      (
-                        <div>
-                          <p>复制失败，请手动复制链接</p>
-                          <input value={result.tipsUrl} readOnly className="clip-input" />
-                        </div>
-                      ), [
-                      { text: '关闭' },
-                    ],
-                    );
-                  }
-                },
-              },
-            ]);
+          // var { result } = data;
+          // Modal.alert('',
+          //   (
+          //     <div>
+          //       <p>{result.tipsTitle}</p>
+          //       <input value={result.tipsUrl} readOnly className="clip-input" />
+          //     </div>
+          //   ),
+          //   [
+          //     { text: '关闭' },
+          //     {
+          //       text: '复制链接',
+          //       onPress() {
+          //         try {
+          //           var input = document.createElement('input');
+          //           input.cssText = 'position: fixed; left: 0; top: -200px; z-index: -99999;';
+          //           input.readyOnly = true;
+          //           input.value = result.tipsUrl;
+          //           document.body.appendChild(input);
+          //           input.focus();
+          //           input.setSelectionRange(0, result.tipsUrl.length);
+          //           document.execCommand('copy');
+          //           document.body.removeChild(input);
+          //           Toast.info('已复制');
+          //         } catch (e) {
+          //           Modal.alert(
+          //             '',
+          //             (
+          //               <div>
+          //                 <p>复制失败，请手动复制链接</p>
+          //                 <input value={result.tipsUrl} readOnly className="clip-input" />
+          //               </div>
+          //             ), [
+          //             { text: '关闭' },
+          //           ],
+          //           );
+          //         }
+          //       },
+          //     },
+          //   ]);
         }
       });
       var $msg = document.querySelectorAll('.msg-item');
