@@ -1114,8 +1114,8 @@
         $('.form-submit').prop('disabled', !curPrice || !curWx);
       }
       $.ajax({
-        url: '/api/dic/',
-        method: 'get',
+        url: '/api/wx/priceDic',
+        method: 'POST',
         headers: {
           'content-type': 'application/json;charset=UTF-8',
         },
