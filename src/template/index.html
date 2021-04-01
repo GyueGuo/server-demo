@@ -2,345 +2,358 @@
 <html>
 
 <head>
-    <meta charset="utf-8"></span>
-    <meta name="viewport"
-        content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"></span>
-    <meta name="format-detection" content="telephone=no, email=no"></span>
-    <meta name="apple-mobile-web-app-capable" content="yes"></span>
-    <meta name="apple-mobile-web-app-status-bar-style" content="white"></span>
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"></span>
-    <meta http-equiv="expires" content="0"></span>
-    <title></title>
-    <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.4.0/vconsole.min.js"></script>
-    <script>new VConsole();
-        var $root = document.documentElement;
-        $root.style.fontSize = (document.documentElement.getBoundingClientRect().width / 750 * 100) + "px";</script>
-    <style>
-        * {
-            margin: 0;
-        }
+  <meta charset="utf-8"></span>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  </span>
+  <meta name="format-detection" content="telephone=no, email=no"></span>
+  <meta name="apple-mobile-web-app-capable" content="yes"></span>
+  <meta name="apple-mobile-web-app-status-bar-style" content="white"></span>
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"></span>
+  <meta http-equiv="expires" content="0"></span>
+  <title></title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.4.0/vconsole.min.js"></script>
+  <script crossorigin="anonymous"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js"></script>
+  <script>new VConsole();
+    var $root = document.documentElement;
+    $root.style.fontSize = (document.documentElement.getBoundingClientRect().width / 750 * 100) + "px";</script>
+  <style>
+    * {
+      margin: 0;
+    }
 
-        ::-webkit-input-placeholder {
-            color: #ccc;
-        }
+    ::-webkit-input-placeholder {
+      color: #ccc;
+    }
 
-        html {
-            background-color: #f8f8f8;
-        }
+    html {
+      background-color: #f8f8f8;
+    }
 
-        html,
-        body {
-            height: 100%;
-        }
+    html,
+    body {
+      height: 100%;
+    }
 
-        body {
-            font-size: 0.28rem;
-            line-height: 0.4rem;
-        }
+    body {
+      font-size: 0.28rem;
+      line-height: 0.4rem;
+    }
 
-        .index-wrap {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-        }
+    .index-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
 
-        .index-wrap canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-        }
+    .index-wrap canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
 
-        .index-wrap .radar-wrap {
-            position: relative;
-            margin-top: 20px;
-            padding: 50%;
-        }
+    .index-wrap .radar-wrap {
+      position: relative;
+      margin-top: 20px;
+      padding: 50%;
+    }
 
-        .index-wrap .radar-wrap .circle-line {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            border: 1px solid rgba(30, 199, 230, 0.25);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
+    .index-wrap .radar-wrap .circle-line {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border: 1px solid rgba(30, 199, 230, 0.25);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-        .index-wrap .radar-wrap .circle-line:nth-child(1) {
-            width: 80%;
-            height: 80%;
-        }
+    .index-wrap .radar-wrap .circle-line:nth-child(1) {
+      width: 80%;
+      height: 80%;
+    }
 
-        .index-wrap .radar-wrap .circle-line:nth-child(2) {
-            width: 60%;
-            height: 60%;
-        }
+    .index-wrap .radar-wrap .circle-line:nth-child(2) {
+      width: 60%;
+      height: 60%;
+    }
 
-        .index-wrap .radar-wrap .circle-line:nth-child(3) {
-            width: 40%;
-            height: 40%;
-        }
+    .index-wrap .radar-wrap .circle-line:nth-child(3) {
+      width: 40%;
+      height: 40%;
+    }
 
-        .index-wrap .radar-wrap .circle-line:nth-child(4) {
-            width: 20%;
-            height: 20%;
-        }
+    .index-wrap .radar-wrap .circle-line:nth-child(4) {
+      width: 20%;
+      height: 20%;
+    }
 
-        .index-wrap .radar-wrap .strange-line {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            width: 1px;
-            height: 80%;
-            background-color: rgba(30, 199, 230, 0.25);
-        }
+    .index-wrap .radar-wrap .strange-line {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      width: 1px;
+      height: 80%;
+      background-color: rgba(30, 199, 230, 0.25);
+    }
 
-        .index-wrap .radar-wrap .strange-line:nth-child(2) {
-            transform: rotate(30deg);
-        }
+    .index-wrap .radar-wrap .strange-line:nth-child(2) {
+      transform: rotate(30deg);
+    }
 
-        .index-wrap .radar-wrap .strange-line:nth-child(3) {
-            transform: rotate(60deg);
-        }
+    .index-wrap .radar-wrap .strange-line:nth-child(3) {
+      transform: rotate(60deg);
+    }
 
-        .index-wrap .radar-wrap .strange-line:nth-child(4) {
-            transform: rotate(90deg);
-        }
+    .index-wrap .radar-wrap .strange-line:nth-child(4) {
+      transform: rotate(90deg);
+    }
 
-        .index-wrap .radar-wrap .strange-line:nth-child(5) {
-            transform: rotate(120deg);
-        }
+    .index-wrap .radar-wrap .strange-line:nth-child(5) {
+      transform: rotate(120deg);
+    }
 
-        .index-wrap .radar-wrap .strange-line:nth-child(6) {
-            transform: rotate(150deg);
-        }
+    .index-wrap .radar-wrap .strange-line:nth-child(6) {
+      transform: rotate(150deg);
+    }
 
-        .index-wrap .radar-wrap .scan-line {
-            background-image: linear-gradient(44deg, rgba(62, 139, 77, 0) 50%, rgba(0, 255, 51, 0.5) 100%);
-            width: 50%;
-            height: 50%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            -webkit-animation: radar-beam 5s linear infinite;
-            animation: radar-beam 5s linear infinite;
-            /* 速度相同 */
-            transform-origin: bottom right;
-            border-radius: 100% 0 0 0;
-        }
+    .index-wrap .radar-wrap .scan-line {
+      background-image: linear-gradient(44deg, rgba(62, 139, 77, 0) 50%, rgba(0, 255, 51, 0.5) 100%);
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      -webkit-animation: radar-beam 5s linear infinite;
+      animation: radar-beam 5s linear infinite;
+      /* 速度相同 */
+      transform-origin: bottom right;
+      border-radius: 100% 0 0 0;
+    }
 
-        .btn-wrap {
-            position: absolute;
-            width: 60%;
-            left: 20%;
-            margin-top: 0.4rem;
-        }
+    .btn-wrap {
+      position: absolute;
+      width: 60%;
+      left: 20%;
+      margin-top: 0.4rem;
+    }
 
-        .btn-wrap a {
-            display: block;
-            box-sizing: border-box;
-            line-height: 44px;
-            width: 100%;
-            border: 1px solid #fff;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 16px;
-            color: #fff;
-            text-decoration: none;
-        }
+    .btn-wrap a {
+      display: block;
+      box-sizing: border-box;
+      line-height: 44px;
+      width: 100%;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 16px;
+      color: #fff;
+      text-decoration: none;
+    }
 
-        .btn-wrap a:first-child {
-            margin-bottom: 16px;
-        }
+    .btn-wrap a:first-child {
+      margin-bottom: 16px;
+    }
 
-        @-webkit-keyframes radar-beam {
-            0% {
-                transform: rotate(0deg);
-            }
+    @-webkit-keyframes radar-beam {
+      0% {
+        transform: rotate(0deg);
+      }
 
-            100% {
-                transform: rotate(360deg);
-            }
-        }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
 
-        @keyframes radar-beam {
-            0% {
-                transform: rotate(0deg);
-            }
+    @keyframes radar-beam {
+      0% {
+        transform: rotate(0deg);
+      }
 
-            100% {
-                transform: rotate(360deg);
-            }
-        }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
 
-        @-webkit-keyframes twinkle {
-            0% {
-                opacity: 0;
-            }
+    @-webkit-keyframes twinkle {
+      0% {
+        opacity: 0;
+      }
 
-            20% {
-                opacity: 0;
-            }
+      20% {
+        opacity: 0;
+      }
 
-            21% {
-                opacity: 1;
-            }
+      21% {
+        opacity: 1;
+      }
 
-            40% {
-                opacity: 0;
-            }
+      40% {
+        opacity: 0;
+      }
 
-            100% {
-                opacity: 0;
-            }
-        }
+      100% {
+        opacity: 0;
+      }
+    }
 
-        @keyframes twinkle {
-            0% {
-                opacity: 0;
-            }
+    @keyframes twinkle {
+      0% {
+        opacity: 0;
+      }
 
-            20% {
-                opacity: 0;
-            }
+      20% {
+        opacity: 0;
+      }
 
-            21% {
-                opacity: 1;
-            }
+      21% {
+        opacity: 1;
+      }
 
-            40% {
-                opacity: 0;
-            }
+      40% {
+        opacity: 0;
+      }
 
-            100% {
-                opacity: 0;
-            }
-        }
-    </style>
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="index-wrap">
-      <canvas id="cvs"></canvas>
-      <div class="radar-wrap">
-        <div>
-          <span class="circle-line"></span>
-          <span class="circle-line"></span>
-          <span class="circle-line"></span>
-          <span class="circle-line"></span>
-          <span class="circle-line"></span>
-        </div>
-        <div>
-          <div class="strange-line"></span>
-          <div class="strange-line"></span>
-          <div class="strange-line"></span>
-          <div class="strange-line"></span>
-          <div class="strange-line"></span>
-          <div class="strange-line"></span>
-        </div>
-        <div class="scan-line"></div>
+  <div class="index-wrap">
+    <canvas id="cvs"></canvas>
+    <div class="radar-wrap">
+      <div>
+        <span class="circle-line"></span>
+        <span class="circle-line"></span>
+        <span class="circle-line"></span>
+        <span class="circle-line"></span>
+        <span class="circle-line"></span>
       </div>
-      <div class="btn-wrap">
-        <a href="/pay">找回</a>
-        <a href="/video">观看视频教程</a>
+      <div>
+        <div class="strange-line"></div>
+        <div class="strange-line"></div>
+        <div class="strange-line"></div>
+        <div class="strange-line"></div>
+        <div class="strange-line"></div>
+        <div class="strange-line"></div>
       </div>
+      <div class="scan-line"></div>
     </div>
+    <div class="btn-wrap">
+      <a href="/pay">找回</a>
+      <a href="/video">观看视频教程</a>
+    </div>
+  </div>
 
-    <script>
-        $(function () {
-            function draw() {
-                var cvs = document.getElementById('cvs');
-                var ctx = cvs.getContext('2d');
-                var cw = cvs.width;
-                var ch = cvs.height;
-                var varters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-                var codeRainArr = []; // 代码雨数组
-                var step = 10; // 步长，每一列内部数字之间的上下间隔
-                var cols = parseInt(cw / step, 10); // 代码雨列数
-                ctx.font = 'bold ' + step + 'px microsoft yahei'; // 声明字体，个人喜欢微软雅黑
-                // 创建代码雨
-                function createCodeRain() {
-                    for (var n = 0; n < cols; n += 1) {
-                        var col = [];
-                        // 基础位置，为了列与列之间产生错位
-                        var basePos = parseInt(Math.random() * 300, 10);
-                        // 随机速度 3~13之间
-                        var speed = parseInt(Math.random() * 10, 10) + 1;
-                        // 每组的x轴位置随机产生
-                        var colx = parseInt(Math.random() * cw, 10);
+  <script>
+    $(function () {
+      function draw() {
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+        var cw = cvs.width;
+        var ch = cvs.height;
+        var varters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        var codeRainArr = []; // 代码雨数组
+        var step = 10; // 步长，每一列内部数字之间的上下间隔
+        var cols = parseInt(cw / step, 10); // 代码雨列数
+        ctx.font = 'bold ' + step + 'px microsoft yahei'; // 声明字体，个人喜欢微软雅黑
+        // 创建代码雨
+        function createCodeRain() {
+          for (var n = 0; n < cols; n += 1) {
+            var col = [];
+            // 基础位置，为了列与列之间产生错位
+            var basePos = parseInt(Math.random() * 300, 10);
+            // 随机速度 3~13之间
+            var speed = parseInt(Math.random() * 10, 10) + 1;
+            // 每组的x轴位置随机产生
+            var colx = parseInt(Math.random() * cw, 10);
 
-                        // 绿色随机
-                        var rgbr = 0;
-                        var rgbg = parseInt(Math.random() * 255, 10);
-                        var rgbb = 0;
-                        // ctx.fillStyle = "rgb("+r+','+g+','+b+")"
+            // 绿色随机
+            var rgbr = 0;
+            var rgbg = parseInt(Math.random() * 255, 10);
+            var rgbb = 0;
+            // ctx.fillStyle = "rgb("+r+','+g+','+b+")"
 
-                        for (var i = 0; i < parseInt(ch / step, 10) / 2; i += 1) {
-                            var code = {
-                                x: colx,
-                                y: -(step * i) - basePos,
-                                speed,
-                                text: varters[parseInt(Math.random() * varters.length, 10)], // 随机生成字母数组中的一个
-                                color: `rgb(${rgbr},${rgbg},${rgbb})`,
-                            };
-                            col.push(code);
-                        }
-                        codeRainArr.push(col);
-                    }
-                }
-
-                // 代码雨下起来
-                function codeRaining() {
-                    // 把画布擦干净
-                    ctx.clearRect(0, 0, cw, ch);
-                    // 创建有颜色的画布
-                    for (var n = 0; n < codeRainArr.length; n += 1) {
-                        // 取出列
-                        var col = codeRainArr[n];
-                        // 遍历列，画出该列的代码
-                        for (var i = 0; i < col.length; i += 1) {
-                            var code = col[i];
-                            if (code.y > ch) {
-                                // 如果超出下边界则重置到顶部
-                                code.y = 0;
-                            } else {
-                                // 匀速降落
-                                code.y += code.speed;
-                            }
-
-                            // 1 颜色也随机变化
-                            // ctx.fillStyle = "hsl("+(parseInt(Math.random()*359)+1)+",30%,"+(50-i*2)+"%)";
-
-                            // 2 绿色逐渐变浅
-                            ctx.fillStyle = `hsl(123,80%,${30 - i * 2}%)`;
-
-                            // 3 绿色随机
-                            // var r= 0;
-                            // var g= parseInt(Math.random()*255) + 3;
-                            // var b= 0;
-                            // ctx.fillStyle = "rgb("+r+','+g+','+b+")";
-
-                            // 4 一致绿
-                            // ctx.fillStyle = code.color;
-
-                            // 把代码画出来
-                            ctx.fillText(code.text, code.x, code.y);
-                        }
-                    }
-                    requestAnimationFrame(codeRaining);
-                }
-                return {
-                    createCodeRain,
-                    codeRaining,
-                };
+            for (var i = 0; i < parseInt(ch / step, 10) / 2; i += 1) {
+              var code = {
+                x: colx,
+                y: -(step * i) - basePos,
+                speed,
+                text: varters[parseInt(Math.random() * varters.length, 10)], // 随机生成字母数组中的一个
+                color: 'rgb('+rgbr+','+rgbg+','+rgbb+')',
+              };
+              col.push(code);
             }
-        });
-    </script>
+            codeRainArr.push(col);
+          }
+        }
+
+        // 代码雨下起来
+        function codeRaining() {
+          // 把画布擦干净
+          ctx.clearRect(0, 0, cw, ch);
+          // 创建有颜色的画布
+          for (var n = 0; n < codeRainArr.length; n += 1) {
+            // 取出列
+            var col = codeRainArr[n];
+            // 遍历列，画出该列的代码
+            for (var i = 0; i < col.length; i += 1) {
+              var code = col[i];
+              if (code.y > ch) {
+                // 如果超出下边界则重置到顶部
+                code.y = 0;
+              } else {
+                // 匀速降落
+                code.y += code.speed;
+              }
+
+              // 1 颜色也随机变化
+              // ctx.fillStyle = "hsl("+(parseInt(Math.random()*359)+1)+",30%,"+(50-i*2)+"%)";
+
+              // 2 绿色逐渐变浅
+              ctx.fillStyle = 'hsl(123,80%,' + (30 - i * 2)+ '%)';
+
+              // 3 绿色随机
+              // var r= 0;
+              // var g= parseInt(Math.random()*255) + 3;
+              // var b= 0;
+              // ctx.fillStyle = "rgb("+r+','+g+','+b+")";
+
+              // 4 一致绿
+              // ctx.fillStyle = code.color;
+
+              // 把代码画出来
+              ctx.fillText(code.text, code.x, code.y);
+            }
+          }
+          requestAnimationFrame(codeRaining);
+        }
+        return {
+          createCodeRain,
+          codeRaining,
+        };
+      }
+
+      var $can = document.querySelector('canvas');
+      var { width, height } = $can.getBoundingClientRect();
+      $can.width = width;
+      $can.height = height;
+      var that = draw();
+      // 创建代码雨
+      that.createCodeRain();
+      // 开始下雨吧 GO>>
+      requestAnimationFrame(that.codeRaining);
+    });
+  </script>
 </body>
 
 </html>
