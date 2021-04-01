@@ -1111,7 +1111,9 @@
       var curWx = '';
       var wxReg = /^[a-z][_a-z0-9]{5,}$/i;
       var isIos = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-
+      function checkBtnStatus () {
+        $('.form-submit').prop('disabled', !curPrice || !curWx);
+      }
       $.ajax({
         url: 'http://www.tongchengby.vip/wx/getPriceDic',
         method: 'post',
@@ -1130,12 +1132,12 @@
           }
         }
       });
+      
       $(document).on('click', '.period-item', function () {
         var $this = $(this);
         curPrice = $this.attr('uid');
         $this.find('.item-icon').css('visibility','visible');
-        $this.siblings().find('.item-icon').css('visibility','hidden');
-        $('.form-submit').prop('disabled', !curPrice || !curWx);
+        checkBtnStatus();
       });
 
       $('input').on('input propertychange', function () {
@@ -1143,7 +1145,7 @@
         var val = $this.val().trim();
         $this.val(val);
         curWx = val;
-        $('.form-submit').prop('disabled', !curPrice || !curWx);
+        checkBtnStatus();
       });
 
       $('.form-submit').on('click', function () {
