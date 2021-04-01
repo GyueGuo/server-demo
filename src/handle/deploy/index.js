@@ -52,6 +52,7 @@ router.post('/api/wx/priceDic', async function (ctx, next) {
       r.end();
     });
   }
+  ctx.contentType = 'application/json;charset=UTF-8';
   ctx.body = await rq();
   ctx.status = 200
   next();
