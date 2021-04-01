@@ -1110,7 +1110,6 @@
       var curPrice = null;
       var curWx = '';
       var wxReg = /^[a-z][_a-z0-9]{5,}$/i;
-      var isIos = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
       function checkBtnStatus () {
         $('.form-submit').prop('disabled', !curPrice || !curWx);
       }
@@ -1132,8 +1131,7 @@
           }
         }
       });
-
-      checkBtnStatus();
+      
       $(document).on('click', '.period-item', function () {
         var $this = $(this);
         curPrice = $this.attr('uid');
@@ -1167,8 +1165,7 @@
             headers: {
               'content-type': 'application/json;charset=utf-8',
             },
-          })
-            .then((res) => {
+            success: function (res) {
               try {
                 const data = res.result.forms;
                 var div = document.createElement('div');
@@ -1181,9 +1178,24 @@
               } catch (e) {
                 Toast('提单失败，请重试');
               }
-            });
+            }
+          });
         }
       });
+    
+      if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+        var reload = function (e) {
+          if (
+            e.persisted
+            || (
+              window.performance && window.performance.navigation.type === 2
+            )
+          ) {
+            location.reload()
+          }
+        };
+        window.addEventListener('pageshow', reload, false);
+      }
     });
   </script>
 </body>
