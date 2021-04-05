@@ -1604,7 +1604,7 @@
     }
 
     .record-detail-wrap .msg-wrap .msg-list .msg-item dl dd {
-      max-width: 3rem;
+      max-width: 4rem;
       position: relative;
       flex-shrink: 1;
       box-shadow: 0 0 0.08rem rgba(0, 0, 0, 0.12);
@@ -1633,6 +1633,7 @@
       padding: 0.24rem;
       border-radius: 0.12rem;
       background-color: #fff;
+      text-align: left;
     }
 
     .record-detail-wrap .msg-wrap .msg-list .msg-date {
@@ -1730,10 +1731,6 @@
         }
       });
       var $msg = document.querySelectorAll('.msg-item');
-      if ($msg.length) {
-        var $last = $msg[$msg.length - 1];
-        $last.scrollIntoView(false);
-      }
     });
   </script>
 </body>
